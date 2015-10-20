@@ -4,11 +4,11 @@
   myAngular.config(function($routeProvider) {
     $routeProvider.
       when('/',{
-        template: '<ul><li ng-repeat="product in products">{{product.name}}</li><ul>',
+        template: 'views/product-list.html',
         controller: 'ProductListCtr'
       }).
       when('/:productName', {
-        template: 'Hello product',
+        template: 'view/product-detail.html',
         controller: 'ProductDetailCtr'
       }).
       otherwise({
