@@ -16,21 +16,31 @@
       });
   });
 
-  myAngular.controller('ProductListCtr', function($scope, $http) {
-    $http.get('products.json').success(function(data) {
-      $scope.products = data;
+myAngular.factory('products', function($http) {
+   return {
+     list: function(callback){
+       $http.get('products.json').success(callback);
+     },
+     find: function(name, callback) {
+       $http.get('products.json').success(function(data) {
+         var product = data.filter(function(entry) {
+           return entry.name === name;
+         })[0];
+         callback(product);
+       });
+     }
+   };
+});
+
+  myAngular.controller('ProductListCtr', function($scope, products) {
+    products.list(function(products) {
+      $scope.products = products;
     });
   });
 
-  myAngular.controller('ProductDetailCtr', function($scope, $routeParams, $http) {
-    $scope.name = $routeParams.productName;
-
-    $http.get('products.json').success(function(data) {
-      $scope.product = data.filter(function(entry) {
-        return entry.name === $scope.name;
-      })[0];
-    })
-
-});
-
+  myAngular.controller('ProductDetailCtr', function($scope, $routeParams, products) {
+    products.find($routeParams.productName, function(product) {
+      $scope.product = product;
+    });
+  });
 })();
