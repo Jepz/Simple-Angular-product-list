@@ -1,5 +1,5 @@
 <ul>
   <li ng-repeat="product in products">
-    <a href="#/{{product.name}}">{{product.name}}</a>
+    <a href="#/{{product.name | encodeURI}}">{{product.name}}</a>
   </li>
 </ul>

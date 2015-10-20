@@ -17,12 +17,19 @@
   });
 
 myAngular.factory('products', function($http) {
+
+    function getData(callback) {
+      $http({
+        method: 'GET',
+        url: 'products.json',
+        cache: true
+      }).success(callback);
+    }
+
    return {
-     list: function(callback){
-       $http.get('products.json').success(callback);
-     },
+     list: getData,
      find: function(name, callback) {
-       $http.get('products.json').success(function(data) {
+       getData(function(data) {
          var product = data.filter(function(entry) {
            return entry.name === name;
          })[0];
@@ -42,5 +49,9 @@ myAngular.factory('products', function($http) {
     products.find($routeParams.productName, function(product) {
       $scope.product = product;
     });
+  });
+
+  myAngular.filter('encodeURI', function() {
+    return window.encodeURI;
   });
 })();
