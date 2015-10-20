@@ -1,0 +1,14 @@
+[
+  {
+    "name":"Product One",
+    "price":"100"
+  },
+  {
+    "name":"Product Two",
+    "price":"150"
+  },
+  {
+    "name":"Prodcut Three",
+    "price":"200"
+  }
+]
