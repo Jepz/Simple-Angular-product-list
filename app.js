@@ -1,29 +1,29 @@
 (function(){
-  var app = angular.module('app', ['ngRoute']);
+  var myAngular = angular.module('myAngular', ['ngRoute']);
 
-  app.config(function($routeProvider) {
+  myAngular.config(function($routeProvider) {
     $routeProvider.
       when('/',{
-        template : 'Hello world!',
-        controller : 'ProductListCtr'
+        template: '<ul><li ng-repeat="product in products">{{product.name}}</li><ul>',
+        controller: 'ProductListCtr'
       }).
       when('/:productName', {
-        template : 'Hello product',
-        controller : 'ProductDetailCtr'
+        template: 'Hello product',
+        controller: 'ProductDetailCtr'
       }).
       otherwise({
-        redirectTo : '/'
+        redirectTo: '/'
       });
   });
 
-  app.controller('ProductListCtr', function($scope, $http) {
+  myAngular.controller('ProductListCtr', function($scope, $http) {
     $http.get('/products.json').success(function(data) {
       $scope.products = data;
     });
   });
 
-  app.controller('ProductDetailCtr', function($scope, $routeParams) {
+  myAngular.controller('ProductDetailCtr', function($scope, $routeParams) {
     console.log($routeParams);
   });
 
-});
+})();
