@@ -3,12 +3,12 @@
 
   myAngular.config(function($routeProvider) {
     $routeProvider.
-      when('/',{
-        template: 'views/product-list.html',
+      when('/', {
+        templateUrl: 'views/product-list.html',
         controller: 'ProductListCtr'
       }).
       when('/:productName', {
-        template: 'view/product-detail.html',
+        templateUrl: 'views/product-detail.html',
         controller: 'ProductDetailCtr'
       }).
       otherwise({
@@ -17,13 +17,13 @@
   });
 
   myAngular.controller('ProductListCtr', function($scope, $http) {
-    $http.get('/products.json').success(function(data) {
+    $http.get('products.json').success(function(data) {
       $scope.products = data;
     });
   });
 
   myAngular.controller('ProductDetailCtr', function($scope, $routeParams) {
-    console.log($routeParams);
-  });
+    $scope.name = $routeParams.productName;
+});
 
 })();
