@@ -22,8 +22,15 @@
     });
   });
 
-  myAngular.controller('ProductDetailCtr', function($scope, $routeParams) {
+  myAngular.controller('ProductDetailCtr', function($scope, $routeParams, $http) {
     $scope.name = $routeParams.productName;
+
+    $http.get('products.json').success(function(data) {
+      $scope.product = data.filter(function(entry) {
+        return entry.name === $scope.name;
+      })[0];
+    })
+
 });
 
 })();
