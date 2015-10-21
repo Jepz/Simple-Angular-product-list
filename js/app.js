@@ -21,14 +21,14 @@ myAngular.factory('products', function($http) {
     list: function(callback) {
       $http({
         method: 'GET',
-        url: 'products.json',
+        url: 'js/products.json',
         cache: true
       }).success(callback);
     },
     find: function(id, callback) {
       $http({
         method: 'GET',
-        url: 'product_' + id + '.json',
+        url: 'js/product_' + id + '.json',
         cache: true
       }).success(callback)
     }
