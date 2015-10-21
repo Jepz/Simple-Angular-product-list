@@ -1,14 +1,14 @@
 [
   {
     "name":"Product One",
-    "price":"100"
+    "id": 1
   },
   {
     "name":"Product Two",
-    "price":"150"
+    "id": 2
   },
   {
     "name":"Prodcut Three",
-    "price":"200"
+    "id": 3
   }
 ]
